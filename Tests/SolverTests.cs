@@ -42,9 +42,9 @@ namespace Tests
 
             Print(solvedField);
 
-            solvedField.InvalidRowIndex().Should().Be(-1);
-            solvedField.InvalidColumnIndex().Should().Be(-1);
-            solvedField.InvalidSquareIndex().Should().Be(-1);
+            solvedField.RowWithDuplicatesIndex().Should().Be(-1);
+            solvedField.ColumnWithDuplicatesIndex().Should().Be(-1);
+            solvedField.SquareWithDuplicatesIndex().Should().Be(-1);
 
             for (int row = 0; row < Constraints.Size; row++)
             {

@@ -3,9 +3,9 @@ using System.Linq;
 
 namespace Solver
 {
-    public static class ConstraintChecker
+    public static class DuplicateChecker
     {
-        public static int InvalidRowIndex(this Field field)
+        public static int RowWithDuplicatesIndex(this Field field)
         {
             for (int rowIndex = 0; rowIndex < Constraints.Size; rowIndex++)
             {
@@ -17,7 +17,7 @@ namespace Solver
             return -1;
         }
 
-        public static int InvalidColumnIndex(this Field field)
+        public static int ColumnWithDuplicatesIndex(this Field field)
         {
             for (int columnIndex = 0; columnIndex < Constraints.Size; columnIndex++)
             {
@@ -35,7 +35,7 @@ namespace Solver
             return -1;
         }
 
-        public static int InvalidSquareIndex(this Field field)
+        public static int SquareWithDuplicatesIndex(this Field field)
         {
             for (int squareIndex = 0; squareIndex < Constraints.Size; squareIndex++)
             {
