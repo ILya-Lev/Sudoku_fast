@@ -1,8 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using FluentAssertions;
 using Solver;
+using Solver.Solvers;
+using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 using Xunit.Sdk;
 
@@ -36,10 +36,11 @@ namespace Tests
 
             Print(field);
 
-            var solver = new SolverInstance();
+            var solver = new CompositeSolver(new ISolverInstance[]{new CrossingSolver(), new OccupationSolver()});
 
             var solvedField = solver.Solve(field);
 
+            PrintZeroMetric(solvedField);
             Print(solvedField);
 
             solvedField.RowWithDuplicatesIndex().Should().Be(-1);
@@ -61,6 +62,18 @@ namespace Tests
 
                 aColumn.Should().BeEquivalentTo(Enumerable.Range(1, 9));
             }
+        }
+
+        private void PrintZeroMetric(Field solvedField)
+        {
+            var zeroCounter = 0;
+            for (int i = 0; i < 81; i++)
+            {
+                if (!solvedField[i / 9][i % 9].IsAssigned())
+                    zeroCounter++;
+            }
+
+            _outputHelper.WriteLine($"there are {zeroCounter} zeros in the result");
         }
 
         private void Print(Field field)
