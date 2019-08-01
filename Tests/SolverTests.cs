@@ -43,6 +43,8 @@ namespace Tests
             PrintZeroMetric(solvedField);
             Print(solvedField);
 
+            solver.IsFieldModified.Should().BeTrue();
+
             solvedField.RowWithDuplicatesIndex().Should().Be(-1);
             solvedField.ColumnWithDuplicatesIndex().Should().Be(-1);
             solvedField.SquareWithDuplicatesIndex().Should().Be(-1);

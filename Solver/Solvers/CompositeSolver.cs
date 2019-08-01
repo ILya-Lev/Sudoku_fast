@@ -24,13 +24,14 @@ namespace Solver.Solvers
 
             for (var i = 0; i < _solvers.Count; i++)
             {
-                //could be null or something else which will screw up everything
+                //'intermediateResult' could be null or something else which will screw up everything
                 var intermediateResult = _solvers[i].Solve(candidate);
                 
                 if (_solvers[i].IsFieldModified)
                 {
                     IsFieldModified = true;
                     candidate = intermediateResult;
+                    //go through whole solvers pipeline once again! i++ in 'for' will set 'i' to 0
                     i = -1;
                 }
             }
